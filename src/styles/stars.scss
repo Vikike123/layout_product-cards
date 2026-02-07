@@ -1,15 +1,3 @@
-$main-color: #fff;
-$border-color: #f3f3f3;
-$main-accent-color: #060b35;
-$secondary-color: #616070;
-$blue-accent-color: #00acdc;
-
-@mixin content-font-styles {
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 14px;
-}
-
 .stars {
   display: flex;
 
@@ -26,7 +14,14 @@ $blue-accent-color: #00acdc;
     }
   }
 
-  &--4 > :nth-child(-n + 4) {
-    background-image: url(../images/star-active.svg);
+  @for $i from 1 through 5 {
+    // Creates classes: &--1, &--2, ... &--5
+    &--#{$i} {
+      // Selects the first $i elements inside that modifier
+      // e.g., if $i is 3, it selects the first 3 stars
+      > :nth-child(-n + #{$i}) {
+        background-image: url(../images/star-active.svg);
+      }
+    }
   }
 }
